@@ -80,15 +80,21 @@ export default function Footer() {
           <h4 className="text-white font-bold text-sm uppercase tracking-widest">Contact Info</h4>
           <div className="space-y-3">
             <a className="flex items-start gap-3 text-white/50 text-xs hover:text-primary transition-colors" href="mailto:lk03041997@gmail.com">
-              <FaEnvelope className="mt-0.5 shrink-0 text-primary" />
+              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <FaEnvelope className="text-primary" />
+              </span>
               <span>lk03041997@gmail.com</span>
             </a>
             <a className="flex items-start gap-3 text-white/50 text-xs hover:text-primary transition-colors" href="tel:+917838015881">
-              <FaPhoneAlt className="mt-0.5 shrink-0 text-primary" />
+              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <FaPhoneAlt className="text-primary" />
+              </span>
               <span>+91 7838015881</span>
             </a>
             <a className="flex items-start gap-3 text-white/50 text-xs hover:text-primary transition-colors" href="https://maps.google.com/?q=Gurgaon%2C+India" target="_blank" rel="noopener noreferrer">
-              <FaMapMarkerAlt className="mt-0.5 shrink-0 text-primary" />
+              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <FaMapMarkerAlt className="text-primary" />
+              </span>
               <span>Gurgaon, India</span>
             </a>
           </div>
@@ -100,7 +106,7 @@ export default function Footer() {
       <div className="border-t border-white/5 py-5 px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-white/30 text-[11px]">
-            © {new Date().getFullYear()} Lalit Kumar Baghel. All Rights Reserved.
+            © {new Date().getFullYear()} Lalit Kumar. All Rights Reserved.
           </p>
           <button
             onClick={scrollToTop}

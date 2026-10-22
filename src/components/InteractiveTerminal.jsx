@@ -23,7 +23,7 @@ export default function InteractiveTerminal() {
 
       switch (cmd) {
         case 'bio':
-          response = 'Lalit Kumar Baghel - React JS / Frontend Developer with 6+ years in web design, based in Gurgaon, India.'
+          response = 'Lalit Kumar - React JS / Frontend Developer with 6+ years in web design, based in Gurgaon, India.'
           break
         case 'skills':
           response = 'React JS, JavaScript (ES6+), HTML5, CSS3, Bootstrap, Tailwind CSS, jQuery, Figma, Node.js, Express, PHP, MySQL, MongoDB.'
@@ -32,7 +32,14 @@ export default function InteractiveTerminal() {
           response = 'Blue Eagle Infotech Pvt. Ltd. | React JS / Frontend Developer | January 2020 - Present | 6+ years web design, 1+ year React JS.'
           break
         case 'contact':
-          response = 'Email: lk03041997@gmail.com | Phone: +91 7838015881 | Location: Gurgaon, India'
+          response = (
+            <>
+              Email: <a href="mailto:lk03041997@gmail.com" className="text-primary hover:underline" onClick={(event) => event.stopPropagation()}>lk03041997@gmail.com</a>
+              {' | Phone: '}
+              <a href="tel:+917838015881" className="text-primary hover:underline" onClick={(event) => event.stopPropagation()}>+91 7838015881</a>
+              {' | Location: Gurgaon, India'}
+            </>
+          )
           break
         case 'clear':
           setHistory([])

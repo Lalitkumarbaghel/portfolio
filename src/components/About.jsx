@@ -111,7 +111,7 @@ export default function About() {
                 <div className="w-24 h-24 rounded-full border-[3px] border-primary overflow-hidden relative z-10 shadow-lg">
                   <img 
                     src="/profile.png" 
-                    alt="Lalit Kumar Baghel" 
+                    alt="Lalit Kumar"
                     className="w-full h-full object-cover object-top scale-105"
                     onError={(e) => {
                       e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80'
@@ -119,9 +119,8 @@ export default function About() {
                   />
                 </div>
               </div>
-              <h3 className="text-lg font-black text-white font-serif">Lalit Kumar Baghel</h3>
+              <h3 className="text-lg font-black text-white font-serif">Lalit Kumar</h3>
               <p className="text-primary text-[10px] font-bold uppercase tracking-widest mt-1">React JS / Frontend Developer</p>
-              <p className="text-white/40 text-[11px] font-mono mt-3">visitor@lalit-baghel:~$ status --active</p>
             </div>
 
             {/* Counter Stats Stack - Horizontal Row */}
@@ -138,7 +137,7 @@ export default function About() {
                     <span className="text-lg font-black text-white">
                       <Counter value={s.value} suffix={s.suffix} />
                     </span>
-                    <span className="text-[8px] text-white/50 uppercase tracking-wider font-bold whitespace-nowrap">{s.label}</span>
+                    <span className="text-[8px] text-white/50 uppercase tracking-wider font-bold">{s.label}</span>
                   </div>
                 </div>
               ))}

@@ -62,7 +62,7 @@ export default function Hero() {
           </p>
 
           {/* Bio */}
-          <p className="text-white/55 text-sm leading-relaxed max-w-lg">
+          <p className="text-white/55 text-sm leading-relaxed tracking-wider max-w-lg">
             React JS / Frontend Developer with 6+ years in web design and 1+ year of hands-on React JS
             experience. I build responsive, user-friendly interfaces and have contributed to 100+ projects.
           </p>
@@ -124,7 +124,7 @@ export default function Hero() {
             <div className="w-[250px] h-[250px] md:w-[370px] md:h-[370px] rounded-full border-[8px] md:border-[12px] border-white overflow-hidden bg-[#151515] shadow-2xl relative">
               <img
                 src="/profile.png"
-                alt="Lalit Kumar Baghel"
+                alt="Lalit Kumar"
                 className="w-full h-full object-cover object-top scale-105 hover:scale-110 transition-transform duration-700"
                 onError={(e) => {
                   e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80'

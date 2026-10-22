@@ -5,17 +5,38 @@ import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaWifi, FaCheckCi
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [sendError, setSendError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent(form.subject)
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
-    window.location.href = `mailto:lk03041997@gmail.com?subject=${subject}&body=${body}`
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
+    setSending(true)
+    setSendError('')
+
+    const formData = new FormData(e.currentTarget)
+    formData.set('_subject', form.subject)
+    formData.set('_replyto', form.email)
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/lk03041997@gmail.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      })
+      const result = await response.json()
+
+      if (!response.ok || (result.success !== true && result.success !== 'true')) {
+        throw new Error(result.message || 'Your message could not be sent. Please try again.')
+      }
+
+      setSubmitted(true)
       setForm({ name: '', email: '', subject: '', message: '' })
-    }, 5000)
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch (error) {
+      setSendError(error instanceof Error ? error.message : 'Your message could not be sent. Please try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -47,7 +68,7 @@ export default function Contact() {
                   href: 'mailto:lk03041997@gmail.com',
                   status: 'Contact',
                   color: '#FF4C00',
-                  sub: 'visitor@lalit-baghel:~$ ping mail' 
+                  sub: 'For project inquiries and collaboration'
                 },
                 { 
                   icon: <FaMapMarkerAlt />, 
@@ -56,7 +77,7 @@ export default function Contact() {
                   href: 'https://maps.google.com/?q=Gurgaon%2C+India',
                   status: 'India',
                   color: '#FF6A00',
-                  sub: 'Available for remote projects'
+                  sub: 'Based in Gurgaon · Open to opportunities'
                 },
                 { 
                   icon: <FaPhoneAlt />, 
@@ -65,7 +86,7 @@ export default function Contact() {
                   href: 'tel:+917838015881',
                   status: 'Contact',
                   color: '#FF8800',
-                  sub: 'visitor@lalit-baghel:~$ call line' 
+                  sub: 'Call or WhatsApp for a quick conversation'
                 },
               ].map((item, i) => (
                 <div 
@@ -113,7 +134,7 @@ export default function Contact() {
 
           </div>
 
-          {/* Right Column (lg:col-span-7): Cyberpunk Terminal Prompt Form */}
+          {/* Right Column (lg:col-span-7): Contact Form */}
           <div className="lg:col-span-7" data-aos="fade-left">
             <AnimatePresence mode="wait">
               {!submitted ? (
@@ -131,19 +152,20 @@ export default function Contact() {
                     {/* Header bar */}
                     <div className="flex justify-between items-center pb-3 border-b border-white/5 text-[9px] font-mono text-white/30">
                       <span>EMAIL CONTACT FORM</span>
-                      <span className="flex items-center gap-1 text-primary"><FaWifi /> EMAIL READY</span>
+                      <span className="flex items-center gap-1 text-primary"><FaWifi /> EMAIL DELIVERY</span>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       {[
-                        { id: 'name', label: 'Name Prompt', type: 'text', placeholder: 'visitor::name_entry', val: form.name },
-                        { id: 'email', label: 'Email Prompt', type: 'email', placeholder: 'visitor::email_entry', val: form.email },
+                        { id: 'name', label: 'Name', type: 'text', placeholder: 'Your name', val: form.name },
+                        { id: 'email', label: 'Email', type: 'email', placeholder: 'Your email address', val: form.email },
                       ].map(f => (
                         <div key={f.id} className="space-y-2">
                           <label className="text-[9px] font-mono font-bold uppercase tracking-wider text-white/40 block">
-                            visitor:~$ <span className="text-primary">{f.label}</span>
+                            <span className="text-primary">{f.label}</span>
                           </label>
                           <input
+                            name={f.id}
                             type={f.type}
                             value={f.val}
                             onChange={e => setForm({...form, [f.id]: e.target.value})}
@@ -157,13 +179,14 @@ export default function Contact() {
 
                     <div className="space-y-2">
                       <label className="text-[9px] font-mono font-bold uppercase tracking-wider text-white/40 block">
-                        visitor:~$ <span className="text-primary">Subject Input</span>
+                        <span className="text-primary">Subject</span>
                       </label>
                       <input
+                        name="subject"
                         type="text"
                         value={form.subject}
                         onChange={e => setForm({...form, subject: e.target.value})}
-                        placeholder="visitor::subject_header"
+                        placeholder="Enter Subject"
                         required
                         className="w-full px-4 py-3 bg-black border border-white/5 rounded-xl text-white text-xs font-mono placeholder-white/15 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(255,76,0,0.1)] transition-all duration-300"
                       />
@@ -171,14 +194,16 @@ export default function Contact() {
 
                     <div className="space-y-2">
                       <div className="flex justify-between items-center text-[9px] font-mono font-bold uppercase tracking-wider text-white/40">
-                        <span>visitor:~$ <span className="text-primary">Message Stream</span></span>
+                        <span className="text-primary">Message</span>
                         <span>CHAR LIMIT: 500</span>
                       </div>
                       <textarea
+                        name="message"
                         rows={4}
+                        maxLength={500}
                         value={form.message}
                         onChange={e => setForm({...form, message: e.target.value})}
-                        placeholder="visitor::message_body_block..."
+                        placeholder="Enter Message"
                         required
                         className="w-full px-4 py-3 bg-black border border-white/5 rounded-xl text-white text-xs font-mono placeholder-white/15 focus:outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(255,76,0,0.1)] transition-all duration-300 resize-none"
                       />
@@ -188,14 +213,32 @@ export default function Contact() {
                   <div className="pt-4">
                     <button
                       type="submit"
+                      disabled={sending}
                       className="w-full py-4 bg-primary text-white text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-primary/95 transition-all cursor-pointer flex items-center justify-center gap-2 group shadow-md shadow-primary/15"
                     >
-                      <FaPaperPlane size={10} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      Open Email App
+                      {sending ? (
+                        <>
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ repeat: Infinity, duration: 1 }}
+                            className="w-3 h-3 border-2 border-white border-t-transparent rounded-full"
+                          />
+                          Sending Message...
+                        </>
+                      ) : (
+                        <>
+                          <FaPaperPlane size={10} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                          Send Message
+                        </>
+                      )}
                     </button>
-                    
+                    {sendError && (
+                      <p role="alert" className="text-red-400 text-xs text-center mt-3">
+                        {sendError}
+                      </p>
+                    )}
                     <div className="flex items-center gap-1.5 justify-center text-[9px] text-white/30 mt-3 font-mono">
-                      <FaEnvelope size={8} /> <span>Your email app will prepare the message for sending</span>
+                      <FaEnvelope size={8} /> <span>Your message will be sent to lk03041997@gmail.com</span>
                     </div>
                   </div>
 
@@ -213,12 +256,12 @@ export default function Contact() {
                   <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mb-4 animate-bounce">
                     <FaCheckCircle size={16} />
                   </div>
-                  <h3 className="text-white font-bold font-serif text-lg md:text-xl">EMAIL MESSAGE PREPARED</h3>
+                  <h3 className="text-white font-bold font-serif text-lg md:text-xl">MESSAGE SENT</h3>
                   <p className="text-white/50 text-xs mt-2 max-w-sm">
-                  Your email app should open with the message details ready. Send the email there to contact Lalit.
+                    Thanks for reaching out. Your message has been sent to Lalit.
                   </p>
                   <div className="mt-6 border border-white/5 px-4 py-2 rounded-xl font-mono text-[9px] text-white/30 bg-black/40">
-                    email_status: ready_to_send
+                    email_status: sent
                   </div>
                 </motion.div>
               )}
