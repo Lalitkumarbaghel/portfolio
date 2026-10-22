@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa'
 
 const TYPING_ROLES = [
+  'React JS / Frontend Developer',
   'Senior Web Designer',
-  'React JS Frontend Developer',
-  'UI/UX Expert',
+  'Frontend Developer',
 ]
 
 export default function Hero() {
@@ -47,13 +47,13 @@ export default function Hero() {
           className="space-y-6 text-left"
         >
           {/* Badge */}
-          <div className="inline-block bg-primary px-4 py-1.5 text-white text-[10px] font-bold uppercase tracking-widest rounded-sm">
-            Welcome! I'M
+          <div className="block w-fit bg-primary px-4 py-1.5 text-white text-[10px] font-bold uppercase tracking-widest rounded-sm">
+            Welcome! I AM
           </div>
 
           {/* Name */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-gradient leading-[1.05] tracking-tight font-serif pb-1">
-            Lalit Kumar Baghel
+            Lalit Kumar
           </h1>
 
           {/* Typing role */}
@@ -63,9 +63,8 @@ export default function Hero() {
 
           {/* Bio */}
           <p className="text-white/55 text-sm leading-relaxed max-w-lg">
-            I am a passionate Senior Web Designer with 6+ years of experience designing responsive,
-            user-friendly and visually attractive websites. Along with web designing, I have 1 year of
-            experience in React JS building modern single-page applications.
+            React JS / Frontend Developer with 6+ years in web design and 1+ year of hands-on React JS
+            experience. I build responsive, user-friendly interfaces and have contributed to 100+ projects.
           </p>
 
           {/* Buttons */}
@@ -87,10 +86,10 @@ export default function Hero() {
           {/* Social icons */}
           <div className="flex items-center space-x-3 pt-4">
             {[
-              { href: 'https://github.com', icon: <FaGithub size={16} />, label: 'GitHub' },
-              { href: 'https://linkedin.com', icon: <FaLinkedin size={16} />, label: 'LinkedIn' },
-              { href: 'mailto:lalit@example.com', icon: <FaEnvelope size={16} />, label: 'Email' },
-              { href: 'https://wa.me/910000000000', icon: <FaWhatsapp size={16} />, label: 'WhatsApp' },
+              { href: 'https://github.com/Lalitkumarbaghel', icon: <FaGithub size={16} />, label: 'GitHub' },
+              { href: 'https://www.linkedin.com/in/lalit-kumar-399a61177/', icon: <FaLinkedin size={16} />, label: 'LinkedIn' },
+              { href: 'mailto:lk03041997@gmail.com', icon: <FaEnvelope size={16} />, label: 'Email' },
+              { href: 'https://wa.me/917838015881', icon: <FaWhatsapp size={16} />, label: 'WhatsApp' },
             ].map((soc, idx) => (
               <a
                 key={idx}
@@ -141,7 +140,7 @@ export default function Hero() {
             className="absolute left-4 top-16 md:left-8 md:top-24 bg-black/85 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl flex items-center gap-2 shadow-2xl"
           >
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-white font-bold text-xs font-mono">6+ Years Exp</span>
+            <span className="text-white font-bold text-xs font-mono">6+ Years in Web Design</span>
           </motion.div>
 
           {/* Floating Badge 2 - Location */}
@@ -150,7 +149,7 @@ export default function Hero() {
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
             className="absolute right-4 bottom-16 md:right-8 md:bottom-24 bg-black/85 backdrop-blur-md border border-primary/20 px-4 py-2 rounded-xl flex items-center gap-2 shadow-2xl"
           >
-            <span className="text-primary text-[10px] font-bold">📍 India</span>
+            <span className="text-primary text-[10px] font-bold">📍 Gurgaon, India</span>
           </motion.div>
         </motion.div>
 

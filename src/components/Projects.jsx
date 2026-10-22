@@ -1,63 +1,76 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import { FaExternalLinkAlt } from 'react-icons/fa'
 
 const CATEGORIES = ['All', 'React JS', 'Web Design', 'Dashboards']
 
 const PROJECTS = [
   {
-    title: 'Education Website',
+    title: 'Admissions Overseas',
     category: 'Web Design',
     num: '01',
-    description: 'Online learning platform with course navigation, student dashboard, and beautiful responsive UI.',
-    techs: ['React JS', 'Tailwind CSS', 'Framer Motion'],
+    description: 'Admissions and overseas education website for students exploring study opportunities.',
+    tags: ['Admissions', 'Study Abroad'],
+    url: 'https://www.admissionsoverseas.com/',
     gradient: 'from-blue-900 to-indigo-900',
     accent: '#6366f1',
   },
   {
-    title: 'CRM Dashboard',
-    category: 'Dashboards',
+    title: 'Omeshan',
+    category: 'Web Design',
     num: '02',
-    description: 'Data-rich Customer Relationship Management interface with analytics, dark tables, and reports.',
-    techs: ['React JS', 'Redux', 'Chart.js'],
+    description: 'Website project delivered for Omeshan.',
+    tags: ['Website'],
+    url: 'https://www.omeshan.com',
     gradient: 'from-cyan-900 to-blue-900',
     accent: '#06b6d4',
   },
   {
-    title: 'Immigration Website',
+    title: 'Zozocar',
     category: 'Web Design',
     num: '03',
-    description: 'Comprehensive immigration consultancy portal with visa info, forms, and blog sections.',
-    techs: ['HTML5', 'CSS3', 'Bootstrap'],
+    description: 'Website project published on GitHub Pages.',
+    tags: ['Website'],
+    url: 'https://lalitkumarbaghel.github.io/zozocar.github.io',
     gradient: 'from-purple-900 to-pink-900',
     accent: '#a855f7',
   },
   {
-    title: 'Travel Website',
+    title: 'Maiz Education',
     category: 'Web Design',
     num: '04',
-    description: 'Breathtaking tourism portal with dynamic packages, destination filters, and booking triggers.',
-    techs: ['React JS', 'Tailwind CSS', 'AOS'],
+    description: 'Education website project for Maiz Education.',
+    tags: ['Education'],
+    url: 'https://www.edumaiz.com/',
     gradient: 'from-orange-900 to-red-900',
     accent: '#f97316',
   },
   {
-    title: 'Portfolio Website',
-    category: 'React JS',
+    title: 'CRM Software — Study Abroad & Immigration',
+    category: 'Dashboards',
     num: '05',
-    description: 'Premium portfolio with custom cursors, particle systems, glassmorphic UI, and smooth animations.',
-    techs: ['React JS', 'Tailwind v4', 'Framer Motion'],
+    description: 'CRM software project for study-abroad and immigration workflows.',
+    tags: ['CRM', 'Study Abroad'],
     gradient: 'from-indigo-900 to-purple-900',
     accent: '#8b5cf6',
   },
   {
-    title: 'Admin Dashboard',
-    category: 'Dashboards',
+    title: 'Study Abroad Website (Full Stack)',
+    category: 'React JS',
     num: '06',
-    description: 'Sleek admin panel with user management, CRUD controls, and real-time monitors.',
-    techs: ['React JS', 'Node.js', 'MongoDB'],
+    description: 'Full-stack website project focused on study-abroad services.',
+    tags: ['Full Stack', 'Study Abroad'],
     gradient: 'from-emerald-900 to-teal-900',
     accent: '#10b981',
+  },
+  {
+    title: 'Blog Website',
+    category: 'React JS',
+    num: '07',
+    description: 'Blog website project included in the CV portfolio.',
+    tags: ['Blog'],
+    gradient: 'from-sky-900 to-indigo-900',
+    accent: '#38bdf8',
   },
 ]
 
@@ -67,7 +80,7 @@ export default function Projects() {
 
   const filteredProjects = activeCategory === 'All'
     ? PROJECTS
-    : PROJECTS.filter(p => p.category === activeCategory || p.techs.includes(activeCategory))
+    : PROJECTS.filter(p => p.category === activeCategory || p.tags.includes(activeCategory))
 
   return (
     <section id="projects" className="py-20 px-6 bg-[#050505] relative overflow-hidden">
@@ -79,8 +92,8 @@ export default function Projects() {
         {/* Header — split layout */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12" data-aos="fade-up">
           <div>
-            <p className="text-primary text-xs font-bold uppercase tracking-widest mb-3">Our Portfolio</p>
-            <h2 className="text-3xl md:text-5xl font-black font-serif text-gradient">View Our Case Studies</h2>
+            <p className="text-primary text-xs font-bold uppercase tracking-widest mb-3">Projects from my CV</p>
+            <h2 className="text-3xl md:text-5xl font-black font-serif text-gradient">Selected Projects</h2>
             <div className="w-12 h-1 bg-primary mt-4" />
           </div>
           {/* Filter Buttons */}
@@ -114,7 +127,7 @@ export default function Projects() {
                 transition={{ duration: 0.35, delay: i * 0.04 }}
                 onMouseEnter={() => setHoveredIdx(i)}
                 onMouseLeave={() => setHoveredIdx(null)}
-                className={`group flex flex-col lg:flex-row items-start lg:items-center gap-6 py-7 px-4 rounded-xl cursor-pointer transition-all duration-300 ${
+                className={`group flex flex-col lg:flex-row items-start lg:items-center gap-6 py-7 px-4 rounded-xl cursor-default transition-all duration-300 ${
                   hoveredIdx === i ? 'bg-white/[0.025]' : ''
                 }`}
               >
@@ -154,9 +167,9 @@ export default function Projects() {
                   <p className="text-white/45 text-xs leading-relaxed line-clamp-2 max-w-xl">{p.description}</p>
                 </div>
 
-                {/* Tech pills */}
+                {/* Project tags */}
                 <div className="hidden md:flex flex-wrap gap-1.5 shrink-0">
-                  {p.techs.map((t, idx) => (
+                  {p.tags.map((t, idx) => (
                     <span
                       key={idx}
                       className="text-[9px] px-2 py-0.5 border rounded font-mono transition-all duration-300"
@@ -171,22 +184,17 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Action Buttons */}
-                <div className={`flex items-center gap-2 shrink-0 transition-all duration-300 ${hoveredIdx === i ? 'opacity-100' : 'opacity-0 lg:opacity-30'}`}>
+                {p.url && (
                   <a
-                    href="#"
-                    className="flex items-center gap-1.5 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white rounded-full transition-all duration-300"
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white rounded-full transition-all duration-300 shrink-0"
                     style={{ background: hoveredIdx === i ? p.accent : 'rgba(255,255,255,0.08)' }}
                   >
-                    Demo <FaExternalLinkAlt size={8} />
+                    Visit Website <FaExternalLinkAlt size={8} />
                   </a>
-                  <a
-                    href="#"
-                    className="p-2 border border-white/10 rounded-full text-white/50 hover:border-white/30 hover:text-white transition-all"
-                  >
-                    <FaGithub size={13} />
-                  </a>
-                </div>
+                )}
               </motion.div>
             ))}
           </AnimatePresence>

@@ -1,31 +1,19 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaBriefcase, FaLaptopCode, FaMapMarkerAlt, FaCalendarAlt, FaChevronDown } from 'react-icons/fa'
+import { FaLaptopCode, FaMapMarkerAlt, FaCalendarAlt, FaChevronDown } from 'react-icons/fa'
 
 const TIMELINE = [
   {
     id: '01',
-    role: 'React JS Developer',
-    company: 'Freelance / Projects',
-    location: 'Remote, India',
-    duration: '2025 – Present',
-    period: '1 Year',
+    role: 'React JS / Frontend Developer',
+    company: 'Blue Eagle Infotech Pvt. Ltd.',
+    location: 'Gurgaon, India',
+    duration: 'January 2020 – Present',
+    period: '6+ Years Web Design · 1+ Year React JS',
     icon: <FaLaptopCode size={16} />,
-    description: 'Building high-performance React web applications, interactive dashboards, and SPA websites. Integrated REST APIs, Redux, React Router, and Tailwind CSS.',
-    skills: ['React JS', 'Redux', 'Tailwind CSS', 'REST APIs', 'Vite', 'Framer Motion'],
+    description: 'Working on frontend development and web design for education platforms, AI websites, and CRM dashboards. Convert PSD and Figma designs into responsive interfaces, integrate APIs, and contribute to 100+ projects.',
+    skills: ['React JS', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'jQuery', 'Figma', 'API Integration'],
     type: 'Current',
-  },
-  {
-    id: '02',
-    role: 'Senior Web Designer',
-    company: 'Design Studio & Client Services',
-    location: 'India',
-    duration: '2019 – 2025',
-    period: '6+ Years',
-    icon: <FaBriefcase size={16} />,
-    description: 'Designed 100+ visually stunning, responsive websites using HTML5, CSS3, JavaScript, Bootstrap, Figma. Led UI/UX decisions and collaborated with cross-functional teams.',
-    skills: ['HTML5', 'CSS3', 'JavaScript', 'Figma', 'Bootstrap', 'UI/UX'],
-    type: 'Full-time',
   },
 ]
 
@@ -48,7 +36,7 @@ export default function Experience() {
             <div className="w-12 h-1 bg-primary mt-4" />
           </div>
           <p className="text-white/35 text-xs md:text-sm leading-relaxed max-w-sm lg:text-right">
-            7+ years of combined experience across design and frontend development.
+            6+ years in web design, including 1+ year of hands-on React JS development.
           </p>
         </div>
 
@@ -60,19 +48,19 @@ export default function Experience() {
             {/* Total XP card */}
             <div className="bg-[#080808]/90 border border-white/5 rounded-2xl p-6 hover:border-primary/20 transition-all duration-300">
               <p className="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-3">Total Experience</p>
-              <div className="text-5xl font-black text-gradient font-serif leading-none">7+</div>
-              <p className="text-white/40 text-xs mt-1 font-mono">Years in Industry</p>
+              <div className="text-5xl font-black text-gradient font-serif leading-none">6+</div>
+              <p className="text-white/40 text-xs mt-1 font-mono">Years in Web Design</p>
             </div>
 
             {/* Stats grid */}
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-[#080808]/90 border border-white/5 rounded-2xl p-4 hover:border-primary/20 transition-all duration-300 text-center">
-                <div className="text-2xl font-black text-white font-serif">100+</div>
-                <p className="text-[9px] text-white/40 uppercase tracking-wider mt-1">Projects</p>
+                <div className="text-2xl font-black text-white font-serif">1+</div>
+                <p className="text-[9px] text-white/40 uppercase tracking-wider mt-1">Year React JS</p>
               </div>
               <div className="bg-[#080808]/90 border border-white/5 rounded-2xl p-4 hover:border-primary/20 transition-all duration-300 text-center">
-                <div className="text-2xl font-black text-white font-serif">40+</div>
-                <p className="text-[9px] text-white/40 uppercase tracking-wider mt-1">Clients</p>
+                <div className="text-2xl font-black text-white font-serif">100+</div>
+                <p className="text-[9px] text-white/40 uppercase tracking-wider mt-1">Projects</p>
               </div>
             </div>
 
@@ -80,7 +68,7 @@ export default function Experience() {
             <div className="bg-[#080808]/90 border border-white/5 rounded-2xl p-5 hover:border-primary/20 transition-all duration-300">
               <p className="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-3">Core Stack</p>
               <div className="flex flex-wrap gap-1.5">
-                {['React JS', 'Figma', 'Tailwind', 'JavaScript', 'Bootstrap', 'Node.js'].map((s) => (
+                {['React JS', 'JavaScript', 'HTML5', 'CSS3', 'Bootstrap', 'Figma'].map((s) => (
                   <span key={s} className="text-[9px] px-2 py-0.5 bg-primary/8 border border-primary/15 text-primary/80 rounded font-mono">
                     {s}
                   </span>

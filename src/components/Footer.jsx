@@ -1,8 +1,8 @@
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaArrowUp, FaTwitter } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaArrowUp, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa'
 
 const FOOTER_LINKS = {
   'Quick Links': ['Home', 'About Me', 'Services', 'Portfolio', 'Contact Us'],
-  'Services': ['Web Design', 'React Development', 'Responsive Website', 'Landing Page', 'Dashboard Design'],
+  'Services': ['Web Design', 'React JS Development', 'Responsive Web Design', 'Dashboard & Web Projects', 'SEO & Content Optimization'],
 }
 
 export default function Footer() {
@@ -12,6 +12,9 @@ export default function Footer() {
   const ID_MAP = {
     'Home': 'home', 'About Me': 'about', 'Services': 'services',
     'Portfolio': 'projects', 'Contact Us': 'contact',
+    'Web Design': 'services', 'React JS Development': 'services',
+    'Responsive Web Design': 'services', 'Dashboard & Web Projects': 'services',
+    'SEO & Content Optimization': 'services',
   }
 
   return (
@@ -27,18 +30,17 @@ export default function Footer() {
             ))}
           </div>
           <p className="text-white/50 text-sm leading-relaxed">
-            Senior Web Designer & React JS Developer based in India. Creating premium digital experiences since 2019.
+            React JS / Frontend Developer with 6+ years of web design experience, based in Gurgaon, India.
           </p>
           <p className="text-white/30 text-xs">
             If you have any queries, please feel free to contact me.
           </p>
           <div className="flex space-x-2">
             {[
-              { href: 'https://github.com', icon: <FaGithub size={14} />, label: 'GitHub' },
-              { href: 'https://linkedin.com', icon: <FaLinkedin size={14} />, label: 'LinkedIn' },
-              { href: 'mailto:lalit@example.com', icon: <FaEnvelope size={14} />, label: 'Email' },
-              { href: 'https://wa.me/910000000000', icon: <FaWhatsapp size={14} />, label: 'WhatsApp' },
-              { href: '#', icon: <FaTwitter size={14} />, label: 'Twitter' },
+              { href: 'https://github.com/Lalitkumarbaghel', icon: <FaGithub size={14} />, label: 'GitHub' },
+              { href: 'https://www.linkedin.com/in/lalit-kumar-399a61177/', icon: <FaLinkedin size={14} />, label: 'LinkedIn' },
+              { href: 'mailto:lk03041997@gmail.com', icon: <FaEnvelope size={14} />, label: 'Email' },
+              { href: 'https://wa.me/917838015881', icon: <FaWhatsapp size={14} />, label: 'WhatsApp' },
             ].map((s, i) => (
               <a
                 key={i}
@@ -77,9 +79,18 @@ export default function Footer() {
         <div className="space-y-4">
           <h4 className="text-white font-bold text-sm uppercase tracking-widest">Contact Info</h4>
           <div className="space-y-3">
-            <p className="text-white/50 text-xs">lalit@example.com</p>
-            <p className="text-white/50 text-xs">+91 00000 00000</p>
-            <p className="text-white/50 text-xs">India</p>
+            <a className="flex items-start gap-3 text-white/50 text-xs hover:text-primary transition-colors" href="mailto:lk03041997@gmail.com">
+              <FaEnvelope className="mt-0.5 shrink-0 text-primary" />
+              <span>lk03041997@gmail.com</span>
+            </a>
+            <a className="flex items-start gap-3 text-white/50 text-xs hover:text-primary transition-colors" href="tel:+917838015881">
+              <FaPhoneAlt className="mt-0.5 shrink-0 text-primary" />
+              <span>+91 7838015881</span>
+            </a>
+            <a className="flex items-start gap-3 text-white/50 text-xs hover:text-primary transition-colors" href="https://maps.google.com/?q=Gurgaon%2C+India" target="_blank" rel="noopener noreferrer">
+              <FaMapMarkerAlt className="mt-0.5 shrink-0 text-primary" />
+              <span>Gurgaon, India</span>
+            </a>
           </div>
         </div>
 

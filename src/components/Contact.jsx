@@ -1,23 +1,21 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaShieldAlt, FaWifi, FaCheckCircle } from 'react-icons/fa'
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPaperPlane, FaWifi, FaCheckCircle } from 'react-icons/fa'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
-  const [sending, setSending] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setSending(true)
+    const subject = encodeURIComponent(form.subject)
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
+    window.location.href = `mailto:lk03041997@gmail.com?subject=${subject}&body=${body}`
+    setSubmitted(true)
     setTimeout(() => {
-      setSending(false)
-      setSubmitted(true)
-      setTimeout(() => { 
-        setSubmitted(false)
-        setForm({ name: '', email: '', subject: '', message: '' }) 
-      }, 3000)
-    }, 1500)
+      setSubmitted(false)
+      setForm({ name: '', email: '', subject: '', message: '' })
+    }, 5000)
   }
 
   return (
@@ -44,25 +42,28 @@ export default function Contact() {
               {[
                 { 
                   icon: <FaEnvelope />, 
-                  label: 'Email Dispatch', 
-                  value: 'lalit@example.com', 
-                  status: 'Online', 
+                  label: 'Email',
+                  value: 'lk03041997@gmail.com',
+                  href: 'mailto:lk03041997@gmail.com',
+                  status: 'Contact',
                   color: '#FF4C00',
                   sub: 'visitor@lalit-baghel:~$ ping mail' 
                 },
                 { 
                   icon: <FaMapMarkerAlt />, 
-                  label: 'Geolocal Radar', 
-                  value: 'Agra, UP, India', 
-                  status: 'Coordinates Locked', 
+                  label: 'Location',
+                  value: 'Gurgaon, India',
+                  href: 'https://maps.google.com/?q=Gurgaon%2C+India',
+                  status: 'India',
                   color: '#FF6A00',
-                  sub: 'radar://taj-mahal:27.1767°N' 
+                  sub: 'Available for remote projects'
                 },
                 { 
                   icon: <FaPhoneAlt />, 
-                  label: 'Secure Voice Link', 
-                  value: '+91 00000 00000', 
-                  status: 'Routing Active', 
+                  label: 'Phone',
+                  value: '+91 7838015881',
+                  href: 'tel:+917838015881',
+                  status: 'Contact',
                   color: '#FF8800',
                   sub: 'visitor@lalit-baghel:~$ call line' 
                 },
@@ -91,7 +92,7 @@ export default function Contact() {
                           {item.status}
                         </span>
                       </div>
-                      <p className="text-white font-bold text-sm mt-0.5 font-sans truncate">{item.value}</p>
+                      <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="text-white font-bold text-sm mt-0.5 font-sans truncate block hover:text-primary transition-colors">{item.value}</a>
                       <p className="text-white/20 text-[9px] font-mono mt-1">{item.sub}</p>
                     </div>
                   </div>
@@ -103,8 +104,8 @@ export default function Contact() {
             <div className="rounded-2xl overflow-hidden border border-white/5 bg-[#080808]/90 p-3 h-48 relative group hover:border-primary/20 transition-colors duration-300">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/45 pointer-events-none z-10" />
               <iframe
-                title="Taj Mahal, Agra Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14201.815259837943!2d78.00807275000001!3d27.1766701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39747121d7024cd7%3A0xdd2ae4803f767ebd!2sTaj%20Mahal!5e0!3m2!1sen!2sin!4v1689255000000!5m2!1sen!2sin"
+                title="Gurgaon, India Map"
+                src="https://maps.google.com/maps?q=Gurgaon%20India&z=12&output=embed"
                 className="w-full h-full border-0 grayscale opacity-45 group-hover:opacity-75 group-hover:grayscale-0 transition-all duration-700 rounded-xl"
                 loading="lazy"
               />
@@ -129,8 +130,8 @@ export default function Contact() {
                   <div className="space-y-5">
                     {/* Header bar */}
                     <div className="flex justify-between items-center pb-3 border-b border-white/5 text-[9px] font-mono text-white/30">
-                      <span>SECURE CONTACT ENDPOINT</span>
-                      <span className="flex items-center gap-1 text-primary"><FaWifi /> CONNECTED</span>
+                      <span>EMAIL CONTACT FORM</span>
+                      <span className="flex items-center gap-1 text-primary"><FaWifi /> EMAIL READY</span>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -187,28 +188,14 @@ export default function Contact() {
                   <div className="pt-4">
                     <button
                       type="submit"
-                      disabled={sending}
                       className="w-full py-4 bg-primary text-white text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-primary/95 transition-all cursor-pointer flex items-center justify-center gap-2 group shadow-md shadow-primary/15"
                     >
-                      {sending ? (
-                        <>
-                          <motion.div 
-                            animate={{ rotate: 360 }}
-                            transition={{ repeat: Infinity, duration: 1 }}
-                            className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
-                          />
-                          TRANSMITTING SECURE PAYLOAD...
-                        </>
-                      ) : (
-                        <>
-                          <FaPaperPlane size={10} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                          Transmit Payload
-                        </>
-                      )}
+                      <FaPaperPlane size={10} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      Open Email App
                     </button>
                     
                     <div className="flex items-center gap-1.5 justify-center text-[9px] text-white/30 mt-3 font-mono">
-                      <FaShieldAlt size={8} /> <span>End-to-end data encryption enabled</span>
+                      <FaEnvelope size={8} /> <span>Your email app will prepare the message for sending</span>
                     </div>
                   </div>
 
@@ -226,12 +213,12 @@ export default function Contact() {
                   <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mb-4 animate-bounce">
                     <FaCheckCircle size={16} />
                   </div>
-                  <h3 className="text-white font-bold font-serif text-lg md:text-xl">TRANSMISSION COMPLETED</h3>
+                  <h3 className="text-white font-bold font-serif text-lg md:text-xl">EMAIL MESSAGE PREPARED</h3>
                   <p className="text-white/50 text-xs mt-2 max-w-sm">
-                    Your secure message packet has successfully routed to Lalit Baghel. A link dispatch response is scheduled.
+                  Your email app should open with the message details ready. Send the email there to contact Lalit.
                   </p>
                   <div className="mt-6 border border-white/5 px-4 py-2 rounded-xl font-mono text-[9px] text-white/30 bg-black/40">
-                    packet_routing_status: SUCCEEDED
+                    email_status: ready_to_send
                   </div>
                 </motion.div>
               )}

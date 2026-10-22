@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { FaAward, FaBriefcase, FaUsers, FaGraduationCap, FaCogs, FaSlidersH } from 'react-icons/fa'
+import { FaAward, FaBriefcase, FaCode, FaGraduationCap, FaCogs } from 'react-icons/fa'
 import InteractiveTerminal from './InteractiveTerminal'
 
 const STATS = [
-  { value: 6, suffix: '+', label: 'Years Experience', icon: <FaAward className="text-primary" size={18} /> },
-  { value: 50, suffix: '+', label: 'Projects Built', icon: <FaBriefcase className="text-primary" size={18} /> },
-  { value: 40, suffix: '+', label: 'Happy Clients', icon: <FaUsers className="text-primary" size={18} /> },
+  { value: 6, suffix: '+', label: 'Years Web Design', icon: <FaAward className="text-primary" size={18} /> },
+  { value: 100, suffix: '+', label: 'Projects', icon: <FaBriefcase className="text-primary" size={18} /> },
+  { value: 1, suffix: '+', label: 'Year React JS', icon: <FaCode className="text-primary" size={18} /> },
 ]
 
 function Counter({ value, suffix }) {
@@ -34,34 +34,34 @@ export default function About() {
     bio: (
       <div className="space-y-4">
         <h4 className="text-white font-bold font-serif text-base flex items-center gap-2">
-          <FaGraduationCap className="text-primary" /> Designing & Coding Premium Web Experiences
+          <FaGraduationCap className="text-primary" /> React JS / Frontend Developer
         </h4>
         <p className="text-white/55 text-xs md:text-sm leading-relaxed">
-          I am a passionate Senior Web Designer with 6+ years of experience designing responsive, user-friendly and visually attractive websites.
-          Along with web designing, I have 1 year of experience in React JS building modern single-page applications.
+          I have 6+ years of web design experience and 1+ year of hands-on React JS development experience.
+          I build responsive, user-friendly interfaces and have contributed to more than 100 projects.
         </p>
         <p className="text-white/55 text-xs md:text-sm leading-relaxed">
-          My goal is to become a Full Stack Developer while creating premium-quality web applications.
+          My work across UI/UX and frontend development has helped improve user engagement by up to 40% and reduce workflow time by 25–30%.
         </p>
       </div>
     ),
     values: (
       <div className="space-y-3">
         <h4 className="text-white font-bold font-serif text-base flex items-center gap-2">
-          <FaSlidersH className="text-primary" /> Core Development Philosophy
+          <FaGraduationCap className="text-primary" /> Education
         </h4>
         <div className="grid grid-cols-1 gap-2.5 pt-1.5">
           <div className="border-l-2 border-primary/45 pl-3">
-            <span className="text-white font-bold text-xs block">Design-First Approach</span>
-            <span className="text-white/50 text-[11px]">Creating immersive visual architectures and perfect layouts.</span>
+            <span className="text-white font-bold text-xs block">Bachelor of Science (B.Sc.)</span>
+            <span className="text-white/50 text-[11px]">Agra University · 2017</span>
           </div>
           <div className="border-l-2 border-primary/45 pl-3">
-            <span className="text-white font-bold text-xs block">Performance & SEO</span>
-            <span className="text-white/50 text-[11px]">Optimized loading speed, semantic structures, and accessibility standards.</span>
+            <span className="text-white font-bold text-xs block">12th Grade · UP Board</span>
+            <span className="text-white/50 text-[11px]">B T S I C Nagla Gumani, Aligarh · 2013</span>
           </div>
           <div className="border-l-2 border-primary/45 pl-3">
-            <span className="text-white font-bold text-xs block">Clean React Code</span>
-            <span className="text-white/50 text-[11px]">Reusable components, custom hooks, and standard clean architecture.</span>
+            <span className="text-white font-bold text-xs block">10th Grade · UP Board</span>
+            <span className="text-white/50 text-[11px]">Shri Pyare Lal Aadarsh Inter College, Aligarh · 2010</span>
           </div>
         </div>
       </div>
@@ -72,10 +72,10 @@ export default function About() {
           <FaCogs className="text-primary" /> My Workspace & Tech Tools
         </h4>
         <p className="text-white/55 text-xs md:text-sm leading-relaxed">
-          I love keeping my environment highly optimized for building clean layouts and debugging systems:
+          Tools and platforms used for design, development, testing, and collaboration:
         </p>
         <div className="flex flex-wrap gap-2 pt-2">
-          {['Figma', 'VS Code', 'Git & GitHub', 'Chrome DevTools', 'Photoshop', 'npm / Vite'].map((tool) => (
+          {['Figma', 'VS Code', 'Sublime Text', 'Git & GitHub', 'Postman', 'XAMPP', 'ChatGPT', 'AI Studio', 'Antigravity'].map((tool) => (
             <span key={tool} className="text-[10px] px-2.5 py-1 bg-white/5 border border-white/10 rounded font-mono text-white/70 hover:border-primary/30 hover:text-primary transition-all">
               {tool}
             </span>
@@ -120,7 +120,7 @@ export default function About() {
                 </div>
               </div>
               <h3 className="text-lg font-black text-white font-serif">Lalit Kumar Baghel</h3>
-              <p className="text-primary text-[10px] font-bold uppercase tracking-widest mt-1">Senior Web Designer</p>
+              <p className="text-primary text-[10px] font-bold uppercase tracking-widest mt-1">React JS / Frontend Developer</p>
               <p className="text-white/40 text-[11px] font-mono mt-3">visitor@lalit-baghel:~$ status --active</p>
             </div>
 
@@ -174,8 +174,8 @@ export default function About() {
               <div className="flex border-b border-white/5 pb-3 mb-5 gap-2">
                 {[
                   { id: 'bio', label: 'Biography' },
-                  { id: 'values', label: 'Philosophy' },
-                  { id: 'setup', label: 'My Setup' }
+                  { id: 'values', label: 'Education' },
+                  { id: 'setup', label: 'Tools' }
                 ].map((tab) => (
                   <button
                     key={tab.id}
@@ -217,4 +217,3 @@ export default function About() {
     </section>
   )
 }
-

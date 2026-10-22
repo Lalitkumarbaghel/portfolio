@@ -23,16 +23,16 @@ export default function InteractiveTerminal() {
 
       switch (cmd) {
         case 'bio':
-          response = 'Lalit Kumar Baghel - Senior Web Designer & React JS Developer based in India. 6+ Years designing premium websites.'
+          response = 'Lalit Kumar Baghel - React JS / Frontend Developer with 6+ years in web design, based in Gurgaon, India.'
           break
         case 'skills':
-          response = 'React JS, Redux, Tailwind CSS, JavaScript (ES6+), Node.js, Express, MongoDB, Git.'
+          response = 'React JS, JavaScript (ES6+), HTML5, CSS3, Bootstrap, Tailwind CSS, jQuery, Figma, Node.js, Express, PHP, MySQL, MongoDB.'
           break
         case 'experience':
-          response = '6+ Years Web Designing | 1 Year React JS Frontend Development'
+          response = 'Blue Eagle Infotech Pvt. Ltd. | React JS / Frontend Developer | January 2020 - Present | 6+ years web design, 1+ year React JS.'
           break
         case 'contact':
-          response = 'Email: lalit@example.com | Location: India'
+          response = 'Email: lk03041997@gmail.com | Phone: +91 7838015881 | Location: Gurgaon, India'
           break
         case 'clear':
           setHistory([])
